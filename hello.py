@@ -18,7 +18,12 @@ def get_video_stats(youtube):
     return req_data
 
 
-for i in range(100):
+
+
+
+
+
+
     with open("traddd.csv", 'a') as csvfile:
         csvwriter = csv.writer(csvfile)
         current_time = t.strftime("%H:%M:%S")
