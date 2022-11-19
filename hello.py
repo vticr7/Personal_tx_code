@@ -4,7 +4,7 @@ from googleapiclient.discovery import build
 import pandas as pd
 import seaborn as sns
 import csv
-import matplotlib.pyplot as pylot
+import matplotlib.pyplot as plt
 import statistics as st
 api_key = 'AIzaSyDgqj4wCUTvAh48KvYAvHPgPqKDYM9LS0E'
 
@@ -36,6 +36,7 @@ print(data.head())
 
 y = data["Views"].values
 x = data["Index"].values
+# finding mean
 mean_views_y = float(0)
 mean_Index_x = 0
 
@@ -43,10 +44,25 @@ for i in range(len(x)-1):
     mean_views_y += y[i]/len(x)
     mean_Index_x += x[i]/len(x)
 
-
+# finding linear eq
 numer = 0
 denom = 0
 for i in range(len(x)-1):
 
     numer = numer+(x[i]-mean_Index_x)*(y[i]-mean_views_y)
     denom += (x[i]-mean_Index_x)**2
+
+slope = numer/denom
+c = mean_views_y-slope*mean_Index_x
+
+
+# plotting
+
+
+
+X = np.linspace(20, 0, 10)
+Y = slope*X+c
+plt.plot(X, Y, color='blue', label='Regression Line')
+plt.scatter(x, y, c='red', label='Scatter Plot')
+
+plt.show()
